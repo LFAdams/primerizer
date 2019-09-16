@@ -1,6 +1,6 @@
 #PBS -S /bin/bash
 #PBS -q batch
-#PBS -N csv
+#PBS -N primerizer
 #PBS -l nodes=1:ppn=1:AMD
 #PBS -l walltime=480:00:00
 #PBS -l mem=80gb
