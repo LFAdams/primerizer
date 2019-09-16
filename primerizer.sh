@@ -28,7 +28,7 @@ IFS=,
 echo CHROM,POS,REF,ALT,AD_REFLOW,AD_ALTLOW,DPLOW,GQLOW,PLLOW,SNPINDEXLOW,AD_REFHIGH,AD_ALTHIGH,DPHIGH,GQHIGH,PLHIGH,SNPINDEXHIGH,REF_FRQ,DELTASNP,NSNPS,TRICUBEDELTASNP,G,GPRIME,PVALUE,NEGLOG10PVAL,QVALUE,MINDP,TRICUBEDP,CL95,CL99,POSLESS250,POSPLUS250,SNP1,SNP501,SNP27,SNP24,RSNP27,RSNP24 > $OUTPUT
 
 #Reads each line of the .csv and calculates target positions in geneome. Target positions are extracted from $GENOME and printed into $OUTPUT along with all columns from $INPUT.
-# Note that we must change $IFS back to its original value in order to output to the .csv, and then return it to "," again to restart the loop.
+#Note that we must change $IFS back to its original value in order to output to the .csv, and then return it to "," again to restart the loop.
 while read CHROM POS REF ALT AD_REFLOW AD_ALTLOW DPLOW GQLOW PLLOW SNPINDEXLOW AD_REFHIGH AD_ALTHIGH DPHIGH GQHIGH PLHIGH SNPINDEXHIGH REF_FRQ DELTASNP NSNPS TRICUBEDELTASNP G GPRIME PVALUE NEGLOG10PVAL QVALUE MINDP TRICUBEDP CL95 CL99
   do
     IFS=$OLDIFS
