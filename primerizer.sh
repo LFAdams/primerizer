@@ -11,7 +11,6 @@ cd $PBS_O_WORKDIR
 
 #this loads the required modules on the cluster
 module load SAMtools/1.6-foss-2016b
-module load FASTX-Toolkit/0.0.14-foss-2016b
 
 #Set reference genome, input file path, and output file path
 GENOME=/work/cemlab/reference_genomes/97103_v2.fa
