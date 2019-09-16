@@ -16,7 +16,7 @@ module load FASTX-Toolkit/0.0.14-foss-2016b
 #Set reference genome, input file path, and output file path
 GENOME=/work/cemlab/reference_genomes/97103_v2.fa
 INPUT=/home/lfa81121/primerizer/testsnps.csv
-OUTPUT=/home/lfa81121/primerizer/testpotentialprimers.csv
+OUTPUT=/home/lfa81121/primerizer/potentialprimers.csv
 
 #Stores the current value for $IFS then changes the internal field seperator to a comma in order to read .csv columns.
 OLDIFS=$IFS
