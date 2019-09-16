@@ -53,7 +53,7 @@ while read CHROM POS REF ALT AD_REFLOW AD_ALTLOW DPLOW GQLOW PLLOW SNPINDEXLOW A
     RSNP24="$(samtools faidx $GENOME $CHROM":"$POS"-"$POSPLUS23 | awk '{if(NR>1)print}' | tr 'gtca' 'cagt' | rev)"
     LINE=$CHROM","$POS","$REF","$ALT","$AD_REFLOW","$AD_ALTLOW","$DPLOW","$GQLOW","$PLLOW","$SNPINDEXLOW","$AD_REFHIGH","$AD_ALTHIGH","$DPHIGH","$GQHIGH","$PLHIGH","$SNPINDEXHIGH","$REF_FRQ","$DELTASNP","$NSNPS","$TRICUBEDELTASNP","$G","$GPRIME","$PVALUE","$NEGLOG10PVAL","$QVALUE","$MINDP","$TRICUBEDP","$CL95","$CL99","$POSLESS250","$POSPLUS250","$SNP1","$SNP501","$SNP27","$SNP24","$RSNP27","$RSNP24
     echo $LINE >> $OUTPUT
-    
+    IFS=,
   done < <(tail -n +2 $INPUT)
 
 #Returns $IFS to its original value.
