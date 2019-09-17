@@ -17,6 +17,9 @@ GENOME=/work/cemlab/reference_genomes/97103_v2.fa
 INPUT=/home/lfa81121/primerizer/testsnps.csv
 OUTPUT=/home/lfa81121/primerizer/potentialprimers.csv
 
+#Converts line endings to unix format
+dos2unix $INPUT
+
 #Stores the current value for $IFS then changes the internal field seperator to
 #a comma in order to read .csv columns.
 OLDIFS=$IFS
