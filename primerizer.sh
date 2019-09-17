@@ -50,8 +50,8 @@ while read NUM CHROM POS REF ALT AD_REFLOW AD_ALTLOW DPLOW GQLOW PLLOW SNPINDEXL
     POSPLUS26=$((POS+26))
     SNP27="$(samtools faidx $GENOME $CHROM":"$POSLESS26"-"$POS | awk '{if(NR>1)print}')"
     SNP24="$(samtools faidx $GENOME $CHROM":"$POSLESS23"-"$POS | awk '{if(NR>1)print}')"
-    RSNP27="$(samtools faidx $GENOME $CHROM":"$POS"-"$POSPLUS26 | awk '{if(NR>1)print}' | tr 'gtca' 'cagt' | rev)"
-    RSNP24="$(samtools faidx $GENOME $CHROM":"$POS"-"$POSPLUS23 | awk '{if(NR>1)print}' | tr 'gtca' 'cagt' | rev)"
+    RSNP27="$(samtools faidx $GENOME $CHROM":"$POS"-"$POSPLUS26 | awk '{if(NR>1)print}' | tr 'gtcaGTCA' 'cagtCAGT' | rev)"
+    RSNP24="$(samtools faidx $GENOME $CHROM":"$POS"-"$POSPLUS23 | awk '{if(NR>1)print}' | tr 'gtcaGTCA' 'cagtCAGT' | rev)"
     LINE=$NUM","$CHROM","$POS","$REF","$ALT","$AD_REFLOW","$AD_ALTLOW","$DPLOW","$GQLOW","$PLLOW","$SNPINDEXLOW","$AD_REFHIGH","$AD_ALTHIGH","$DPHIGH","$GQHIGH","$PLHIGH","$SNPINDEXHIGH","$REF_FRQ","$DELTASNP","$NSNPS","$TRICUBEDELTASNP","$G","$GPRIME","$PVALUE","$NEGLOG10PVAL","$QVALUE","$MINDP","$TRICUBEDP","$CL95","$CL99","$POSLESS250","$POSPLUS250","$SNP1","$SNP501NOWHITE","$SNP27","$SNP24","$RSNP27","$RSNP24
     echo $LINE >> $OUTPUT
     IFS=,
