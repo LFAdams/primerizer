@@ -6,7 +6,8 @@
 #PBS -l mem=80gb
 
 #above is the sapelo2 que parameters
-#this changes the output to current working directory
+#this changes the working directory of the compute node to current directory of
+#the login node used to submit the script
 cd $PBS_O_WORKDIR
 
 #this loads the required modules on the cluster
@@ -17,7 +18,7 @@ GENOME=/work/cemlab/reference_genomes/97103_v2.fa
 INPUT=/home/lfa81121/primerizer/testsnps.csv
 OUTPUT=/home/lfa81121/primerizer/potentialprimers.csv
 
-#Converts line endings to unix format
+#Converts line endings to unix format. Might need to use mac2unix instead.
 dos2unix $INPUT
 
 #Stores the current value for $IFS then changes the internal field seperator to
