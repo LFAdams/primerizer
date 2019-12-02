@@ -55,5 +55,14 @@ java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T RealignerTargetCreator -R $REFGENO
 
 java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T IndelRealigner -R $REFGENOME -I H_sorted_mkdupl_rg.bam -targetIntervals H_intervals.list -o H_realigned.bam
 
-
 java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T HaplotypeCaller  -nct 8 -R $REFGENOME -I H_realigned.bam --emitRefConfidence GVCF --variant_index_type LINEAR --variant_index_parameter 128000 -o H_realigned_reads_raw_variants_gvcf.vcf
+
+java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T GenotypeGVCFs -R $REFGENOME  --variant H_realigned_reads_raw_variants_gvcf.vcf -nt 8 -o HL_raw_snps_and_indels.vcf
+
+java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T VariantFiltration -R $REFGENOME  -V HL_raw_snps_and_indels.vcf  --filterExpression "QD < 2.0 || FS > 60.0 || MQ < 40.0 || MQRankSum  < -12.5 || ReadPosRankSum < -8.0" --filterName "Default_recommended" -o HL_filtered_snps.vcf
+
+module load VCFtools/0.1.15-foss-2016b-Perl-5.24.1
+
+time /usr/local/apps/eb/VCFtools/0.1.15-foss-2016b-Perl-5.24.1/bin/vcftools  --vcf HL_filtered_snps.vcf --remove-filtered-all --recode  --max-missing 1 -c > HL_pass_nomiss_snps.vcf
+
+java -jar $EBROOTGATK/GenomeAnalysisTK.jar -T VariantsToTable -R $REFGENOME  -V HL_pass_nomiss_snps.vcf -F CHROM -F POS -F REF -F ALT -GF AD -GF DP -GF GQ -GF PL -o HL_SNPs_R.table
